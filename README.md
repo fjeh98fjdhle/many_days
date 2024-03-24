@@ -8,5 +8,5 @@ This is for the purpose if someone wants to look into the future and tell how ma
 # contributions
 You are welcome if you want to contribute to this. I will probably not finish this and be very inactive but if you want to you are welcome to make some pull requests and I will review it someday.
 
-#License
+# License
 Under MIT liscence so do whatever you want with it.
