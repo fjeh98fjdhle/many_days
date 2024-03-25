@@ -1,16 +1,16 @@
 month_to_days = {"january":31,"februar":28,"march":31,"april":30,"may":31,"june":30,"july":31,"august":31,"september":30,"october":31,"november":30,"december":31}
 months_leap_year = {"january":31,"februar":29,"march":31,"april":30,"may":31,"june":30,"july":31,"august":31,"september":30,"october":31,"november":30,"december":31}
 
-def input_usr(timing, year=None, month=None, day=None):
+def input_usr(timing=None, year=None, month=None, day=None):
     if timing == "current":
         print("Please enter the current day.")
     elif timing == "goal":
         print("Please enter the target day.")
-    if year:
+    if year == True:
         year = int(input("year:"))
-    if month:
+    if month == True:
         month = input("month(words):")
-    if day:
+    if day == True:
         day = int(input("day:"))
     
     return [year, month, day]
@@ -69,11 +69,11 @@ def correction_usr_input(usr_input):
     month = list(usr_input[1])
     fin_month = [""]
     
-    count = 0
+    count = -1
     for a in month:
         count += 1
         month[count] = month[count].lower()
-        fin_month[0] += month_count
+        fin_month[0] += month[count]
     
     right = False
     for month in month_to_days:
@@ -84,7 +84,7 @@ def correction_usr_input(usr_input):
     if right == False:
         print("maybe you made a mistake with the month. Please try again:")
         usr_input = input_usr(year=usr_input[0], month=True, day=usr_input[2])
-        correction_usr(usr_input)
+        correction_usr_input(usr_input)
         
     return usr_input
             
@@ -92,9 +92,11 @@ def correction_usr_input(usr_input):
     
 
 def start():
-    current = input_usr("current", year=True, month=True, day=True)
+    current = input_usr(timing="current", year=True, month=True, day=True)
+    current = correction_usr_input(current)
     print()
-    goal = input_usr("goal", year=True, month=True, day=True)
+    goal = input_usr(timing="goal", year=True, month=True, day=True)
+    goal = correction_usr_input( goal)
     difference = calculate(current, goal)
     if difference == 0:
         return "stop joking"
